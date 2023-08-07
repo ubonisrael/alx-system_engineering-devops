@@ -1,2 +1,2 @@
 #!/bin/bash
-cut -c 1 Elizabeth.txt | fmt | tr -d ' '
+cut -c 1 | fmt | tr -d ' '
