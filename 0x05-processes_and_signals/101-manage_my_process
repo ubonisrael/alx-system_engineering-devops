@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # An init script that runs "manage_my_process"
+set -e
 if [[ $1 == 'start' ]]
 then
     ./manage_my_process &
@@ -23,3 +24,5 @@ then
 else
     echo "Usage: manage_my_process {start|stop|restart}"
 fi
+
+exit 0
