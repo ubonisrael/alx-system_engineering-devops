@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
 # logs into a remote server using ssh
-private_key="~/.ssh/school"
 
-# Check if the private key file exists
-if [ -f "$private_key" ]; then
-    ssh -i "$private_key" ubuntu@34.232.53.42
-fi
+ssh -i ~/.ssh/school ubuntu@34.232.53.42
