@@ -1,0 +1,11 @@
+# ssh(1) obtains configuration data from the following sources in the following order:
+#   1.   command-line options
+#   2.   user's configuration file (~/.ssh/config)
+#   3.   system-wide configuration file (/etc/ssh/ssh_config)
+
+Host *
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
