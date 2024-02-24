@@ -2,4 +2,7 @@
 # logs into a remote server using ssh
 private_key="~/.ssh/school"
 
-ssh "$private_key" ubuntu@34.232.53.42
+# Check if the private key file exists
+if [ -f "$private_key" ]; then
+    ssh "$private_key" ubuntu@34.232.53.42
+fi
