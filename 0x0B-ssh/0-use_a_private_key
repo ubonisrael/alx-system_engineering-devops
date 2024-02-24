@@ -4,5 +4,5 @@ private_key="~/.ssh/school"
 
 # Check if the private key file exists
 if [ -f "$private_key" ]; then
-    ssh "$private_key" ubuntu@34.232.53.42
+    ssh -i "$private_key" ubuntu@34.232.53.42
 fi
