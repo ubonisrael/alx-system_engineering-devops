@@ -15,5 +15,4 @@ file { 'create ssh config file':
 path    => '/etc/ssh/ssh_config',
 ensure  => present,
 content => $file_content,
-require => File['/etc/ssh']
 }
