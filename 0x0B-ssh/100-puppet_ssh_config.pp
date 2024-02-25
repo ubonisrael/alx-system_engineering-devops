@@ -12,7 +12,8 @@ $file_content = "Host *
 "
 
 file { 'create ssh config file':
-path    => "/home/ubuntu/.ssh/config",
+path    => '/etc/ssh/ssh_config',
 ensure  => present,
-content => $file_content
+content => $file_content,
+require => File['/etc/ssh']
 }
