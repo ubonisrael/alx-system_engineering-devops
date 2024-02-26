@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# A script that installs apache on a container
+# and gets it to return a message
+apt-get update
+apt-get install -y apache2
+echo "Hello Holberton" > /var/www/html/index.html
+service apache2 restart
