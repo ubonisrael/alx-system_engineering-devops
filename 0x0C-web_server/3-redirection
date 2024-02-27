@@ -2,10 +2,10 @@
 # A script that installs a nginx server
 sudo apt-get update
 sudo apt-get install nginx -y
-sudo chown -R $USER:$USER /var/www
-sudo chown -R $USER:$USER /etc/nginx/sites-available
+sudo chown -R "$USER":"$USER" /var/www
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo printf %s "server {
+printf %s "server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
@@ -15,15 +15,11 @@ sudo printf %s "server {
 
     server_name _;
 
-    location / {
-        try_files $uri $uri/ =404;
-    }
-
     location /redirect_me {
         return 301 https://www.goal.com;
     }
 }
-" > test
-sudo cat test > /etc/nginx/sites-available/default
+" > "test"
+cat test > /etc/nginx/sites-available/default
 rm test
 sudo service nginx start
