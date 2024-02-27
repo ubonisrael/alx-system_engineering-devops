@@ -2,6 +2,6 @@
 # A script that installs a nginx server
 sudo apt-get update
 sudo apt-get install nginx -y
-echo "Hello World!" > index.html
+echo "Hello World!" > index.nginx-debian.html
 sudo mv index.html > /var/www/html/
 sudo service nginx start
