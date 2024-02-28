@@ -21,16 +21,16 @@ $server_config = "server {
 }
 "
 exec { 'update server':
-command => 'sudo apt-get update'
+command => '/usr/bin/sudo /usr/bin/apt-get update'
 }
 
 exec { 'change owner /var/www':
-command => 'sudo chown -R "$USER":"$USER" /var/www',
+command => '/usr/bin/sudo /usr/bin/chown -R "$USER":"$USER" /var/www',
 require => Package['nginx']
 }
 
 exec { 'change owner /etc/nginx':
-command => 'sudo chown -R "$USER":"$USER" /etc/nginx',
+command => '/usr/bin/sudo /usr/bin/chown -R "$USER":"$USER" /etc/nginx',
 require => Package['nginx']
 }
 
@@ -58,6 +58,6 @@ require => Exec['change owner /etc/nginx']
 }
 
 exec { 'restart nginx':
-command => 'sudo service nginx restart',
-require => File['/etc/nginx/sites-available/default'], File['/var/www/html/404.html'], File['/var/www/html/index.nginx-debian.html']
+command => '/usr/bin/sudo /usr/sbin/service /usr/sbin/nginx restart',
+require => File['/etc/nginx/sites-available/default']
 }
