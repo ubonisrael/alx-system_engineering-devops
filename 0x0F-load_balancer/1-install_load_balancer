@@ -11,7 +11,7 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.copy
 printf %s "
 listen hbnb
         # listen 80 port
-        bind *:80
+        bind 0.0.0.0:80
         balance            roundrobin
         server             150155-web-01 34.204.81.235:80 check
         server             150155-web-02 18.234.107.45:80 check
