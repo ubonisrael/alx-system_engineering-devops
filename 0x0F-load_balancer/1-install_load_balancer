@@ -10,21 +10,33 @@ echo "ENABLED=1" >> /etc/default/haproxy
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.copy
 # add to the end
 # define frontend ( any name is OK for [www] )
-printf %s "
-frontend www
-        # listen 80 port
-        bind *:80
-        # set default backend
-        default_backend    backend_servers
-        # send X-Forwarded-For header
-        # option             forwardfor
+printf %s "global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
 
-# define backend
-backend backend_servers
-        # balance with roundrobin
-        balance            roundrobin
-        # define backend servers
-        server             node01 34.204.81.235:80 check
-        server             node02 18.234.107.45:80 check
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+
+listen www
+    bind 0.0.0.0:80
+    mode http
+    stats enable
+    stats uri /haproxy?stats
+    balance roundrobin
+    option httpclose
+    option forwardfor
+    server 150155-web-01 34.204.81.235:80 check
+    server 150155-web-02 18.234.107.45:80 check
 " >> /etc/haproxy/haproxy.cfg
-sudo systemctl restart haproxy
+
+sudo service haproxy start
