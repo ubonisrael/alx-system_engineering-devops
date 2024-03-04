@@ -1,30 +1,19 @@
 #!/usr/bin/env bash
 # Installs and configures an HAProxy server
-sudo apt-get update
 sudo apt-get install --no-install-recommends software-properties-common -y
 sudo add-apt-repository ppa:vbernat/haproxy-2.8
+sudo apt-get update
 sudo apt-get install haproxy=2.8.\* -y
 sudo chown -R "$USER":"$USER" /etc/default/haproxy
 sudo chown -R "$USER":"$USER" /etc/haproxy/
 echo "ENABLED=1" >> /etc/default/haproxy
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.copy
-# add to the end
-# define frontend ( any name is OK for [www] )
 printf %s "
-frontend www
+listen hbnb
         # listen 80 port
         bind *:80
-        # set default backend
-        default_backend    backend_servers
-        # send X-Forwarded-For header
-        # option             forwardfor
-
-# define backend
-backend backend_servers
-        # balance with roundrobin
         balance            roundrobin
-        # define backend servers
         server             150155-web-01 34.204.81.235:80 check
-        server             150155-web-01 18.234.107.45:80 check
+        server             150155-web-02 18.234.107.45:80 check
 " >> /etc/haproxy/haproxy.cfg
-sudo systemctl restart haproxy
+sudo service haproxy restart

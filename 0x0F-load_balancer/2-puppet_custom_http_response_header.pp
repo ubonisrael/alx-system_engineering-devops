@@ -9,7 +9,7 @@ $server_config = "server {
 
     server_name _;
 
-    add_header X-Served-By ${hostname};
+    add_header X-Served-By \"${hostname}\";
 
     location /redirect_me {
         return 301 https://www.goal.com;
