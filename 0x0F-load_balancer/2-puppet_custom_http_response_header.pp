@@ -34,13 +34,13 @@ require => Exec['update server']
 file { '/etc/nginx/sites-available/default':
 ensure  => file,
 content => $server_config,
-notify  => Service['nginx']
+require => Package['nginx'],
+notify  => Exec['restart Nginx']
 }
 
-service { 'nginx':
-ensure  => running,
-enable  => true,
-require => Package['nginx']
+exec { 'restart Nginx':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
 
 file { '/var/www/html/index.nginx-debian.html':
