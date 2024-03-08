@@ -9,7 +9,7 @@ print_sub_domains () {
 
 subdomains=("www" "lb-01" "web-01" "web-02")
 
-if [ "$#" -eq 1 ] ; then
+if [ "$#" -lt 2 ] ; then
     for str in "${subdomains[@]}"; do
         print_sub_domains "$1" "$str"
     done
