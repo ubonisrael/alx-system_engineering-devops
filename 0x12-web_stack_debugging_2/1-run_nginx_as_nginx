@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Fix this container so that Nginx is running as the nginx user.
+sudo chown -R nginx:nginx /var/log/nginx
+sudo chown -R nginx:nginx /var/lib/nginx
+sudo chown -R nginx:nginx /etc/nginx/
+chmod 0644 /etc/nginx/nginx.conf
+sudo chmod 0644 /var/log/nginx/access.log /var/log/nginx/error.log
+sed -i 's/^#*user [a-z]*-*[a-z]*/user nginx/' /etc/nginx/nginx.conf
+sed -i 's/listen 80/listen 8080/' /etc/nginx/sites-enabled/default
+sed -i 's/listen \[::\]:80/listen [::]:8080/' /etc/nginx/sites-enabled/default
+kill -9 $(ps -e | grep apache2 | awk '{print $1}')
+nginx -c /etc/nginx/nginx.conf
+sudo -u nginx service nginx start
