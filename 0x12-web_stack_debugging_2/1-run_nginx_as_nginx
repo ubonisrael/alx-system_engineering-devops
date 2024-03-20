@@ -3,5 +3,5 @@
 chmod 0644 /etc/nginx/nginx.conf
 sed -i 's/^#*user [a-z]*-*[a-z]*/user nginx/' /etc/nginx/nginx.conf
 sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
-kill -9 "$(pgrep apache2 | awk '{print $1}')"
+pkill apache2
 sudo -u nginx service nginx start
