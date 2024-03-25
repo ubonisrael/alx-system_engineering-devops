@@ -13,7 +13,9 @@ if __name__ == "__main__":
     no_tasks = len(tasks)
     done_tasks = list(filter(lambda x: x.get("completed") is True, tasks))
     no_done_tasks = len(done_tasks)
-    print("Employee {} is done with tasks({}/{}):".format(
-        user.get("name"), no_done_tasks, no_tasks))
-    for task in done_tasks:
-        print("\t {}".format(task['title']))
+
+    with open("{}.csv".format(argv[1]), "w", newline="") as f:
+        writer = csv.writer(f, quotechar='"', quoting=csv.QUOTE_ALL)
+        for task in tasks:
+            writer.writerow([user.get("id"), user.get("username"),
+                             task.get("completed"), task.get("title")])
