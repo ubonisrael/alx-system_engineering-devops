@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""A script that fetches data with an API and displays it"""
+"""A script that fetches data with an API and
+exports it to CSV"""
 import csv
 from requests import get
 from sys import argv
