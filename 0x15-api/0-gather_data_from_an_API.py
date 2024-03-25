@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """A script that fetches data with an API and displays it"""
-from requests import get
 from sys import argv
+from requests import get
 
 if __name__ == "__main__":
     user = get("https://jsonplaceholder.typicode.com/users/{}/".
