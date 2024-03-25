@@ -11,7 +11,9 @@ if __name__ == "__main__":
                 format(argv[1])).json()
     tasks_list = []
     for task in tasks:
-        tasks_list.append({'task': task.get('title'), 'completed':task.get('completed'), 'username': user.get('username')})
+        tasks_list.append({'task': task.get('title'),
+                           'completed': task.get('completed'),
+                           'username': user.get('username')})
     json_dict = {argv[1]: tasks_list}
 
     with open("{}.json".format(argv[1]), "w") as f:
