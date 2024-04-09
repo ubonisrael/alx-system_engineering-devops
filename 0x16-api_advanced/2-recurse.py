@@ -22,7 +22,7 @@ def recurse(subreddit, aft=None):
             titles_list.append(k.get('data').get('title'))
 
         after = res.json().get('data').get('after')
-        if after != None:
+        if after is None:
             titles_list.extend(recurse(subreddit, after))
         return titles_list
     else:
