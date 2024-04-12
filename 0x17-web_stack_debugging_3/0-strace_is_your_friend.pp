@@ -2,5 +2,5 @@
 
 exec { 'fix bug':
 provider => shell,
-command  => "sed -i 's/phpp/php/' var/www/html/wp-settings.php"
+command  => "sed -i 's/phpp/php/g' var/www/html/wp-settings.php"
 }
