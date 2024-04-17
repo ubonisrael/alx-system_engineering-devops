@@ -1,0 +1,3 @@
+#!/bin/bash
+# Reloads the gunicorn service gracefully
+sudo systemctl status gunicorn | sed -n 's/.*Main PID: \(.*\)$/\1/g p' | cut -f1 -d' ' | xargs kill -HUP
